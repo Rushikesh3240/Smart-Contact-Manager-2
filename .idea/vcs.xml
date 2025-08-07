@@ -2,7 +2,8 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/Smart-Contact-Manager" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/New-repo" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Smart-Contact-Manager-2" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/smartcontactmanager" vcs="Git" />
   </component>
 </project>
