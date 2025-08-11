@@ -105,7 +105,7 @@ const paymentStart=()=>{
             console.log(response)
             if(response.status=="created"){
                 //open payment form
-                let=options={
+                let options={
                     key:"rzp_test_JJoDMUNiF1IeDW",
                     amount:response.amount,
                     currency:"INR",
@@ -119,7 +119,8 @@ const paymentStart=()=>{
                         console.log(response.razorpay_signature);
                         console.log("payment successful !");
                        // alert("congrats !! Payment Successful !!"); 
-                        swal("Good Job!","congrats !! Payment Successful !!","success");
+                       updatePaymentOnServer(response.razorpay_payment_id,response.razorpay_order_id,"Paid")
+                        
                         
                     },
                     prefill:{
@@ -144,7 +145,7 @@ const paymentStart=()=>{
                     console.log(response.error.metadata.order_id);
                     console.log(response.error.metadata.payment_id);
                    // alert("Oops payment failed !!")
-                    swal("Failed!","Oops payment failed!!","error")
+                    
                     });
                 rzp.open()
 
@@ -156,4 +157,20 @@ const paymentStart=()=>{
             alert("Somethig went wrong !!")
         }
 });
+};
+
+function updatePaymentOnServer(payment_id,order_id,status){
+    $.ajax({
+        url:"/user/update_order",
+        data:JSON.stringify({payment_id:payment_id,order_id:order_id,status:status}),
+        contentType:"application/json",
+        type:"POST",
+        dataType:"json",
+        success:function(response){
+            swal("Good Job!","congrats !! Payment Successful !!","success");
+        },
+        error:function(error){
+            swal("Failed!","Your Payment is Successful , but we did not get it on server,we will contact you as soon as possible!!","error");
+        }
+    });
 }
