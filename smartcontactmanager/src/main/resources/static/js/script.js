@@ -86,7 +86,8 @@ const paymentStart=()=>{
     let amount=$("#payment_field").val();
     console.log(amount);
     if(amount==""|| amount==null){
-        alert("amount is required !!");
+       // alert("amount is required !!");
+        swal("Failed!!","amount is required!!","error");
         return;
     }
 
@@ -115,9 +116,10 @@ const paymentStart=()=>{
                     handler:function(response){
                         console.log(response.razorpay_payment_id);
                         console.log(response.razorpay_order_id);
-                        console.log(razorpay_signature);
+                        console.log(response.razorpay_signature);
                         console.log("payment successful !");
-                        alert("congrats !! Payment Successful !!"); 
+                       // alert("congrats !! Payment Successful !!"); 
+                        swal("Good Job!","congrats !! Payment Successful !!","success");
                         
                     },
                     prefill:{
@@ -141,7 +143,8 @@ const paymentStart=()=>{
                     console.log(response.error.reason);
                     console.log(response.error.metadata.order_id);
                     console.log(response.error.metadata.payment_id);
-                    alert("Oops payment failed !!")
+                   // alert("Oops payment failed !!")
+                    swal("Failed!","Oops payment failed!!","error")
                     });
                 rzp.open()
 
